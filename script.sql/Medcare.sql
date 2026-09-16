@@ -124,4 +124,3 @@ INNER JOIN medicos m ON e.id = m.especialidade_id
 LEFT JOIN consultas c ON m.id = c.medico_id AND c.status = 'Realizada'
 GROUP BY e.id, e.nome
 ORDER BY faturamento_consultas DESC;
-
