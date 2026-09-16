@@ -105,3 +105,46 @@ inner join mecanicos m on os.mecanico_id = m.id
 where c.nome = 'joao'
 order by os.data_abertura desc;
 
+--Q3
+--ordens_servico, veiculos, pecas_os, mecanicos
+SELECT
+os.id as id_os,
+v.placa,
+m.nome as nome_mecanico,
+os.valor_mao_obra,
+
+os.valor_mao_obra + COALESCE(sum(p.quantidade * p.valor_unitario), 0) as valor_total_final
+from ordens_servico os
+join veiculos v on os.veiculo_id = v.id
+join mecanicos m on os.mecanico_id = m.id
+left join pecas_os p on os.id = p.os_id
+
+group by
+os.id,
+v.placa,
+m.nome,
+os.valor_mao_obra
+order by os.id;
+
+--Q4
+select
+m.nome,
+m.especialidade,
+m.valor_hora
+
+from mecanicos m 
+where (valor_hora > 90)
+
+--Q5
+--ordens_servico, mecanicos, 
+SELECT
+m.especialidade,
+sum(os.valor_mao_obra) as total_mao_obra
+
+from ordens_servico os
+join mecanicos m on os.mecanico_id = m.id
+
+
+where os.status = 'Concluida'
+group by 
+m.especialidade;
