@@ -77,6 +77,7 @@ insert into pecas_os (os_id, nome_peca, quantidade, valor_unitario) VALUES
 ('4', 'Bateria 60Ah', '1', '400.00')
 
 --Q1
+create view vw_veiculos as
 select
 v.marca, 	
 v.modelo,
@@ -90,6 +91,7 @@ order by v.marca asc, v.modelo asc;
 --Q2
 
 --veiculos, ordens_servico, mecanicos
+create view vw_joao as
 SELECT
 os.id as os_id,
 v.placa,
@@ -107,6 +109,7 @@ order by os.data_abertura desc;
 
 --Q3
 --ordens_servico, veiculos, pecas_os, mecanicos
+create view vw_total_os as
 SELECT
 os.id as id_os,
 v.placa,
@@ -127,6 +130,7 @@ os.valor_mao_obra
 order by os.id;
 
 --Q4
+create view vw_mecanico_sup as
 select
 m.nome,
 m.especialidade,
@@ -137,6 +141,8 @@ where (valor_hora > 90)
 
 --Q5
 --ordens_servico, mecanicos, 
+
+create view vw_total_concluida as
 SELECT
 m.especialidade,
 sum(os.valor_mao_obra) as total_mao_obra
