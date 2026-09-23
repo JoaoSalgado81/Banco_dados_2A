@@ -1,3 +1,4 @@
+--Criação de Tabelas
 CREATE TABLE pacientes (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -34,7 +35,7 @@ CREATE TABLE exames_consulta (
     valor_exame NUMERIC(10, 2) NOT NULL CHECK (valor_exame >= 0),
 )
 
---Povoando Tabelas
+--Povoamento
 
 INSERT INTO especialidades (nome) VALUES 
 ('Cardiologia'),
